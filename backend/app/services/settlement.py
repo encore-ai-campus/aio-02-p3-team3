@@ -26,7 +26,7 @@ def item_price(item: dict, *, brand_id: str, menu_version: str) -> tuple[int | N
     extra = menu_service.option_extra_price(brand_id, menu_version, item.get("options") or {},
                                             menu_id=item["menu_id"])
     unit = base + extra
-    return unit, unit * int(item.get("quantity") or 1)
+    return unit, unit  # [R7.1 실증 · merge 금지] 수량을 곱하지 않는다 — 2잔이어도 1잔 값
 
 
 def compute_lines(rows: list[dict]) -> list[dict]:
